@@ -1,0 +1,7 @@
+TEST
+120
+effects
+Lorem ipsum
+----------------
+image2.jpg
+Druhý obrázek v poøadí
