@@ -2,8 +2,8 @@ PHPminiGallery
 ==============
 
 Jednoduchý skript na jednoduché vytváření fotogalerií na webu. Snahou toho projektu je vytváření galerie co nejvíce zjednodušit.
-Jak nejpohodlnější se ukázal způsobzpůsob je nahrát fotky přes FTP na web, nastavit nadpis a přpadně další drobnosti a o více se nestarat.
-Přesně tento postup využívá PHPminiGallery. Pro generování galerií využívá funkce PHP na straně serveru a pro pěkné zobrazení na straně klienta knihovnu jQuery.
+Jako nejpohodlnější se ukázal způsob nahrát fotky přes FTP na web, nastavit nadpis a případně další drobnosti a o více se nestarat.
+Přesně tento postup využívá PHPminiGallery. Pro generování galerií využívá funkce PHP na straně serveru a pro pěkné zobrazení na straně klienta knihovnu jQuery a modifikovaný lightbox script Slimbox2.
 
 <h3>Použití</h3>
 Galerie se tvoří z podsložek umístěných ve složce gallery, pro zobrazení galerie je třeba zavolat soubor index.php?dir=podslozka. Podložka obsahuje velké fotografie a po prvním přístupu se vytvoří konfigurační soubor conf.txt a složka mini s miniaturami.
