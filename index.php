@@ -91,7 +91,7 @@ $effects=0;
 //Todo: volba z vice sablon
 //pro php  4.3+
 //$sablona=file_get_contents("sablona.php");
-$sablona=implode("",file("sablona.phtml"));
+$sablona=implode("",file("sablona-nahledy.phtml"));
 
 $foo="&nbsp;";
 $echo="";
@@ -183,8 +183,9 @@ else{
 				}
 			closedir($dh2);
 			sort($files2);
+			var_dump($files2);
 			$index=(!$param[1])?(rand(1,sizeof($files2))-1):$param[1]-1;
-			$mini=preg_replace("/\[img_(\d+)\]/","<img src=\"$dir/$fold/mini/".$files[$index]."\" height=\"$height\" width=\"".($height*$ratio)."\" />",$out2[2]);
+			$mini=preg_replace("/\[img_(\d+)\]/","<img src=\"$dir/$fold/mini/".$files2[$index]."\" height=\"$height\" width=\"".($height*$ratio)."\" />",$out2[2]);
 	
 			}
 			$echo2.=str_replace(array("[dir]","[name]"),array("?".$kde."dir=$relative_dir/$fold",$name),$mini);
