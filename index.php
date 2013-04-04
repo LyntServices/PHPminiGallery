@@ -183,7 +183,6 @@ else{
 				}
 			closedir($dh2);
 			sort($files2);
-			var_dump($files2);
 			$index=(!$param[1])?(rand(1,sizeof($files2))-1):$param[1]-1;
 			$mini=preg_replace("/\[img_(\d+)\]/","<img src=\"$dir/$fold/mini/".$files2[$index]."\" height=\"$height\" width=\"".($height*$ratio)."\" />",$out2[2]);
 	
