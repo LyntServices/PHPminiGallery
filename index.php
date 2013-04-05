@@ -46,9 +46,7 @@ if(isset($_POST["popis"]) && $_POST["popis"]){
 				else $desc="";
 				fwrite($f,"$filename\n");
 				fwrite($f,"$desc\n");
-				
 			}
-
 	}
 }
 fclose($f);
@@ -83,7 +81,11 @@ $text=$conf[3];
 //z externiho souboru
 //if(file_exists($dir."/info.txt")) $text=file_get_contents($dir."/info.txt");
 
-$effects=(trim($conf[2])=="effects")?1:0;
+switch($conf[2]){
+	case "effects": $effects=1;break;
+	case "disable": $effects=-1;break;
+	default: $effects=0;
+}
 $effects=(isset($_GET["effects"]))?$_GET["effects"]:$effects;
 }
 else {
@@ -104,14 +106,11 @@ $require.=" <script type=\"text/javascript\">\n";
 $require.="  var effects={$effects};\n";
 $require.="  if(effects==-1) jQuery.fx.off = true;";
 $require.="    $(function() {\n";
-$require.="        //$('#galerie a').lightBox({txtImage: 'Obr&aacute;zek',	txtOf: 'z'});\n";
 $require.="        $('#galerie a').slimbox({counterText: 'Obr&aacute;zek {x} z {y}', captionAnimationDuration: 200});\n";
 $require.="    });\n";
 $require.="</script>\n";
 $require.="<script type=\"text/javascript\" src=\"js/gal.js\"></script>\n";
-
 //$test=preg_match("/\[images\](.*)\[image\](.*)\[\/image\](.*)\[\/images\]/s",$sablona,$out);
-//var_dump ($out);
 $kde=($galerie=="gallery")?"":"galerie=$galerie&amp;"; 
 
 //vypis seznamu galerii
