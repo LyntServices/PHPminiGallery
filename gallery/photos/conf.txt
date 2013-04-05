@@ -2,6 +2,7 @@ TEST
 120
 effects
 Lorem ipsum
+#thumb:adresa vlastni miniatury
 ----------------
 image2.jpg
 Druhý obrázek v poøadí

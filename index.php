@@ -27,12 +27,13 @@ $f=fopen($dir."/conf.txt","w+");
 $conf_nadpis=(isset($_POST["nadpis"]))?$_POST["nadpis"]:"Galerie";
 $conf_height=(isset($_POST["height"]))?$_POST["height"]:"120";
 $conf_text=(isset($_POST["text"]))?$_POST["text"]:"";
-
+$conf_mini=(isset($_POST["mini"]))?"thumb:".$_POST["mini"]:"#thumb:url";
 fwrite($f,"$conf_nadpis\n");
 fwrite($f,"$conf_height\n");
 $eff=(isset($_POST["eff"]))?"effects":"noeff";
 fwrite($f,"$eff\n");
 fwrite($f,"$conf_text\n");
+fwrite($f,"$conf_mini\n");
 fwrite($f,"----------------\n");
 if(isset($_POST["popis"]) && $_POST["popis"]){
 
@@ -60,6 +61,7 @@ echo "<form action=\"?dir={$_GET["dir"]}\" method=\"POST\">";
 echo "<input type=\"text\" value=\"Nadpis\" name=\"nadpis\"> :: nadpis galerie<br>";
 echo "<input type=\"text\" value=\"120\" name=\"height\"> :: výška miniatur<br>";
 echo "<input type=\"text\" value=\"\" name=\"text\"> :: popis galerie<br>";
+echo "<input type=\"text\" value=\"\" name=\"mini\"> :: miniatura galerie<br>";
 echo "Popisky <input type=\"radio\" value=\"0\" selected=\"selected\" name=\"popis\">nevytváøet";
 if (extension_loaded("exif")) echo " <input type=\"radio\" value=\"1\" name=\"popis\">z EXIF";
 //echo " <input type=\"radio\" value=\"2\" name=\"popis\"> prùvodce";
@@ -127,6 +129,7 @@ if($slozky){
 		if (file_exists("$galerie/".$dirs[$i]."/conf.txt")){
 		$conf=array_map('trim',file("$galerie/".$dirs[$i]."/conf.txt"));
 		$height=$conf[1];
+		$dir_min=(preg_match("/^thumb:(.*)/s",$conf[4],$tmp))?$tmp[1]:"";
 		$mini=$out[2];
 		if(preg_match("/\[img_(\d+)\]/",$out[2],$param)){
 			$files=array();
@@ -137,6 +140,9 @@ if($slozky){
 			closedir($dh);
 			sort($files);
 			$index=(!$param[1])?(rand(1,sizeof($files))-1):$param[1]-1;
+			if($dir_min)
+			$mini=preg_replace("/\[img_(\d+)\]/","<img src=\"$dir_min\" height=\"$height\" width=\"".($height*$ratio)."\" />",$out[2]);
+			else
 			$mini=preg_replace("/\[img_(\d+)\]/","<img src=\"$galerie/".$dirs[$i]."/mini/".$files[$index]."\" height=\"$height\" width=\"".($height*$ratio)."\" />",$out[2]);
 	
 		}
@@ -172,7 +178,9 @@ else{
 			$name="<em>$fold</em>";
 			if (file_exists("$dir/$fold/conf.txt")){
 				$conf=array_map('trim',file("$dir/$fold/conf.txt"));
-				$name=$conf[0];	
+				$name=$conf[0];
+				
+				$dir_min=(preg_match("/^thumb:(.*)/s",$conf[4],$tmp))?$tmp[1]:"";	
 			}
 			
 			if(preg_match("/\[img_(\d+)\]/",$out2[2],$param)){
@@ -184,6 +192,9 @@ else{
 			closedir($dh2);
 			sort($files2);
 			$index=(!$param[1])?(rand(1,sizeof($files2))-1):$param[1]-1;
+			if($dir_min)
+			$mini=preg_replace("/\[img_(\d+)\]/","<img src=\"$dir_min\" height=\"$height\" width=\"".($height*$ratio)."\" />",$out2[2]);
+			else
 			$mini=preg_replace("/\[img_(\d+)\]/","<img src=\"$dir/$fold/mini/".$files2[$index]."\" height=\"$height\" width=\"".($height*$ratio)."\" />",$out2[2]);
 	
 			}

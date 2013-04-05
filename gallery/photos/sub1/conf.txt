@@ -2,4 +2,5 @@ Podsložka 1
 120
 effects
 První podsložka
+#thumb:adresa vlastni miniatury
 ----------------
