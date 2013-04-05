@@ -19,13 +19,14 @@ TEST
 120
 effects
 popis galerie
+thumb:url
 ------------
 image2.jpg
 Druhý obrázek v pořadí
 ```
 
 Důležité jsou první 3 řádky - nadpis galerie, výška miniatury v pixelech, klíčové slovo effects (cokoliv jiného efekty vypne),
-4. řádek může obsahovat popis galerie.
+4. řádek může obsahovat popis galerie. 5. řádek může obsahovat volbu pro vlastní náhledový obrázek galerie s klíčovým slovem *thumb:* na začátku -  buď s absolutním URL (např. thumb:http://internal.lynt.cz/lynt-logo.png) nebo relativně k souboru index.php (např. thumb:gallery/photos/mini/image1.jpg).
 Další řádky mohou obsahovat popisky obrázků - vždy jméno souboru a následujicí řádek jeho popisek.
 Zobrazení efektů je možné explicitně vypout/zapnout parametrem effects: 
 ```
