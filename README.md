@@ -79,3 +79,7 @@ PHPminiGallery použivá šablonovací systém pro jednoduché přizpůsobení g
 ```
 
 Původní projekt: http://smitka.org/programovani/phpminigallery
+
+Demo naleznete na:
+http://php-gallery.lynt.cz/simple/
+http://php-gallery.lynt.cz/thumbs/
